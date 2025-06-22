@@ -1,13 +1,20 @@
-'use client'
-
-import { useUser } from "@/context/user-context"
+import photosGet from "@/actions/photos-get"
+import userGet from "@/actions/user-get"
+import Feed from "@/components/feed/feed"
+import { Metadata } from "next"
+import Link from "next/link"
 import React from "react"
 
-export default function ContaPage(){
-  const {user} = useUser()
+export const metadata: Metadata = {
+  title: 'Postar | Minha Conta'
+}
+
+export default async function ContaPage(){
+  const {data: user} = await userGet()
+  const {data} = await photosGet({ user: user?.username})
   return (
-    <main>
-      <h1>Conta: {user?.name}</h1>
-    </main>
+    <section>
+      {data?.length ? <Feed photos={data} user={user?.username} /> : <div><p style={{color: '#444', fontSize: '1.25rem', marginBottom: '1rem'}}>Nenhuma foto encontrada.</p> <Link className="button" href={'/conta/postar'} style={{display: "inline-block"}}>Postar Foto</Link></div>}
+    </section>
   )
 }
