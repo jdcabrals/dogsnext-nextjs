@@ -13,8 +13,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   const user = {
     name: 'joao',
@@ -32,6 +34,7 @@ export default async function RootLayout({
             <main className="AppBody">
               {children}
             </main>
+            <div>{modal}</div>
             <Footer />
           </div>
         </UserContextProvider>
