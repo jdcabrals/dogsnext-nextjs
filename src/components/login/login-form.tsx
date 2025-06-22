@@ -35,11 +35,8 @@ export default function LoginForm(){
   React.useEffect(() => {
     if(state.ok) window.location.href = '/conta'
   }, [state.ok])
-
-  const {user} = useUser()
-  return(
+    return(
     <>
-    {user?.email}
       <form className={styles.form} action={action}>
       <Input label="Usuário" name="username" type="text" />
       <Input label="Senha" name="password" type="password" />
