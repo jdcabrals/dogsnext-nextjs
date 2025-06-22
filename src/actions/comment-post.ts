@@ -4,6 +4,7 @@ import { COMMENT_POST } from "@/functions/api"
 import apiError from "@/functions/api-error"
 import { revalidateTag } from "next/cache"
 import { cookies } from "next/headers"
+import { Comment } from "./photo-get"
 
 
 export default async function commentPost(state: {},formData: FormData){

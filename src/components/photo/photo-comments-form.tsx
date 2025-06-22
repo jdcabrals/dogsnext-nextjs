@@ -6,6 +6,7 @@ import styles from './photo-comments-form.module.css'
 import EnviarIcon from "@/icons/enviar-icon";
 import ErrorMessage from "../helper/error-message";
 import commentPost from "@/actions/comment-post";
+import { Comment } from "@/actions/photo-get";
 
 function FormButton(){
   const {pending} = useFormStatus()
@@ -23,7 +24,7 @@ export default function PhotoCommentsForm({single, id, setComments}: {single: bo
 
   React.useEffect(() => {
     if(state.ok && state.data){
-      setComments((comments) => [...comments, state.data])
+      setComments((comments) => [...comments, state.data as Comment])
       setComment('')
     }
   }, [state, setComments])
